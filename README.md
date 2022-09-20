@@ -8,6 +8,7 @@ A avaliação consiste em instalar o Framework Odoo e desenvolver o módulo  **R
 - Antes de iniciar crie uma nova branch com seu nome e um sobrenome (ex.: fulano_da_silva);
 - Seu projeto deve ter no mínimo um commit para cada capítulo concluído;
 - Desenvolva um código legível e organizado utilize comentários somente onde for realmente necessário;
+- Utilize o inglês para nome de variaveis, comentários e commits;
 - Substitua o readme por um texto com uma breve descrição do projeto e aponte as principais dificuldades que você econtrou no processo;
 - Após concluir envie um pull request com seu projeto para o mesmo repositório;
 
