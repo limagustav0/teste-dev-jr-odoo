@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+
+    <record id="estate_property_tree_view" model="ir.ui.view">
+        <field name="name">estate.property.tree</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <tree string="Channel" editable="bottom">
+                <field name="name"/>
+                <field name="selling_price"/>
+                <field name="expected_price"/>
+                <field name="date_availability"/>
+                <field name="description"/>
+                <field name="living_area"/>
+                <field name="bedrooms"/>
+                <field name="description"/>
+                <field name="facades"/>
+                <field name="garage"/>
+                <field name="garden"/>
+                <field name="garden_area"/>
+                <field name="garden_orientation"/>
+            </tree>
+        </field>
+    </record>
+
+
+
+    <record id="estate_property_action" model="ir.actions.act_window">
+        <field name="name">Properties</field>
+        <field name="res_model">estate.property</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a property advertisement
+            </p>
+            <p>
+                Create real estate properties and follow the selling process.
+            </p>
+        </field>
+    </record> 
+
+
+
+    <record id="estate_property_view_form" model="ir.ui.view">
+        <field name="name">test</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <form string="Test">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="selling_price"/>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <field name="description"/>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="estate_property_view_search" model="ir.ui.view">
+        <field name="name">estate.property.search</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <search string="Tests">
+                <field name="name"/>
+                <field name="selling_price"/>
+                <field name="expected_price"/>
+                <field name="date_availability"/>
+                <field name="description"/>
+                <field name="living_area"/>
+                <field name="bedrooms"/>
+                <field name="description"/>
+                <field name="facades"/>
+                <field name="garage"/>
+                <field name="garden"/>
+                <field name="garden_area"/>
+                <field name="garden_orientation"/>
+            </search>
+        </field>
+    </record>
+
+    
+
+</odoo>
