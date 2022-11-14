@@ -16,13 +16,12 @@
                 <field name="description"/>
                 <field name="living_area"/>
                 <field name="bedrooms"/>
-                <field name="description"/>
                 <field name="facades"/>
                 <field name="garage"/>
                 <field name="garden"/>
                 <field name="garden_area"/>
                 <field name="garden_orientation"/>
-                <field name="tag_ids"/>
+                <field name="total_area"/>
             </tree>
         </field>
     </record>
@@ -38,6 +37,7 @@
                         <h1>
                             <field name="name"/>
                         </h1>
+                        <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                     </div>
                     <group>
                         <group>
@@ -61,6 +61,7 @@
                                 <field name="garden"/>
                                 <field name="garden_area" attrs="{'invisible': [('garden', '=', False)]}"/>
                                 <field name="garden_orientation" attrs="{'invisible': [('garden', '=', False)]}"/>
+                                <field name="total_area"/>
                             </group>
                         </page>
                         <page string="Offers">
@@ -98,6 +99,7 @@
                 <field name="garden"/>
                 <field name="garden_area"/>
                 <field name="garden_orientation"/>
+                <field name="total_area"/>
                 <filter string="Available" name="available" domain="[('state', 'in', ('new', 'offer_received'))]"/>
                 <group expand="1" string="Group By">
                     <filter string="Postcode" name='postcode' context="{'group_by':'postcode'}"/>

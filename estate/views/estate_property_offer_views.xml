@@ -6,8 +6,8 @@
             <field name="arch" type="xml">
                 <tree string="Estate Property Offer">
                     <field name="price"/>
-                    <field name="status"/>
                     <field name="partner_id"/>
+                    <field name="status"/>
                     <field name="property_id"/>
                 </tree>
             </field>

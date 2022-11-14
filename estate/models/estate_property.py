@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import api, fields, models
 from datetime import date, timedelta
 
 
@@ -30,5 +30,12 @@ class EstateProperty(models.Model):
     tag_ids = fields.Many2many("estate.property.tag", string="Tags")
     user_id = fields.Many2one("res.users", string="Salesman", default=lambda self: self.env.user)
     buyer_id = fields.Many2one("res.partner", string="Buyer", readonly=True, copy=False)
-    offer_ids = fields.One2many("estate.property.offer", "property_id", string="Offers")
+    offer_ids = fields.One2many("estate.property.offer", "property_id")
+
+    @api.depends('living_area','garden_area')
+    def _compute_area(self):
+        for area in self:
+            area.total_area = area.living_area + area.garden_area
+            
+    total_area = fields.Integer(compute="_compute_area")
     
