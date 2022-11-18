@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
+    <!-- list view of models -->
+
     <record id="estate_property_tag_view_tree" model="ir.ui.view">
         <field name="name">estate.property.tag.tree</field>
         <field name="model">estate.property.tag</field>
@@ -9,6 +12,8 @@
             </tree>
         </field>
     </record>
+
+    <!-- first view mode -->
 
     <record id="estate_property_tag_action" model="ir.actions.act_window">
         <field name="name">Property Tags</field>
