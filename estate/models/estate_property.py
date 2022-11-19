@@ -1,14 +1,23 @@
 from odoo import api, fields, models
-from datetime import date, timedelta
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
+from dateutil.relativedelta import relativedelta
+from odoo.tools.float_utils import float_compare, float_is_zero, float_round
+
 
 class EstateProperty(models.Model):
     
     
+    _sql_constraints = [
+        ('estate_property_expected_price_positive', 'CHECK(expected_price > 0)','The expected price must be strictly positive.'),
+        ('estate_property_selling_price_positive', 'CHECK(selling_price >= 0)','The selling price must be strictly positive.'),
+        ('estate_property_offer', 'CHECK(offer_ids.price >= 0)','The offer price must be strictly positive.'),
+        ('estate_property_name', 'UNIQUE(name)','The property tag name and property type name must be unique.'),
+    ]
+    
     #------------------- functions -------------------#
     
     def _default_date_availability(self):
-        return fields.Date.context_today(self) + timedelta(90)
+        return fields.Date.context_today(self) + relativedelta(months=3)
  
     _name = "estate.property"
     _description = "real estate property"
@@ -78,6 +87,26 @@ class EstateProperty(models.Model):
         if "canceled" in self.mapped("state"):
             raise UserError("Sold properties cannot be canceled")
         return self.write({"state" : "canceled"})
+    
+    
+    #------------------- constraint functions -------------------#
+    
+    @api.constrains("expected_price", "selling_price")
+    def _check_price_difference(self):
+        for prop in self:
+            if (
+                not float_is_zero(prop.selling_price, precision_rounding=0.01)
+                and float_compare(prop.selling_price, prop.expected_price * 90.0 / 100.0, precision_rounding=0.01) < 0
+            ):
+                raise ValidationError(
+                    "The selling price must be at least 90% of the expected price! "
+                    + "You must reduce the expected price if you want to accept this offer."
+                )
+    
+    
+
+    
+            
     
 
     
